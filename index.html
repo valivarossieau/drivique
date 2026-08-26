@@ -1,0 +1,557 @@
+<!DOCTYPE html><html lang="nl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#060607"><title>DRIVIQUE — Jouw auto. Onze chauffeur.</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800;900&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"><style>
+  :root{--black:#060607;--panel:#0C0C0E;--panel2:#131315;--leather:#1A150D;--bone:#EFEBE1;--grey:#8C867A;--gold:#D8A24A;--gold-hi:#F7E3A3;--gold-deep:#A9781F;--line:rgba(216,162,74,.15);--hair:rgba(239,235,225,.08);--display:"Archivo",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif;--serif:"Playfair Display",Georgia,serif;--mono:"Space Mono",ui-monospace,monospace;--grad:linear-gradient(135deg,#F7E3A3,#D8A24A 46%,#A9781F);--ease:cubic-bezier(.16,1,.3,1);color-scheme:dark;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;background:#060607}
+  body{background:var(--black);color:var(--bone);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;-webkit-tap-highlight-color:transparent}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  ::selection{background:var(--gold);color:#000}
+  /* solid gold for large wordmarks (no clip bug) */
+  .goldflat{color:#EAC77E}
+  /* shimmer gold only for small accents */
+  .gold{background:linear-gradient(110deg,#A9781F 0%,#F7E3A3 22%,#FFF7DE 30%,#E9C36A 44%,#B8823A 60%,#A9781F 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 8s linear infinite;padding-right:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-60% 0}}
+  .mline{display:block;overflow:hidden;padding-bottom:.1em;padding-right:.22em;margin-right:-.22em}
+  .mline>span{display:block;transition:transform 1.15s var(--ease) var(--d,0s)}
+  .js .mline>span{transform:translateY(116%)}
+  .mline.in>span{transform:translateY(0)}
+  .reveal{transition:opacity 1s var(--ease) var(--d,0s),transform 1s var(--ease) var(--d,0s)}
+  .js .reveal{opacity:0;transform:translateY(34px)}
+  .reveal.in{opacity:1;transform:none}
+  #bar{position:fixed;top:0;left:0;height:2px;width:0;z-index:200;background:var(--grad)}
+  nav{position:fixed;top:0;left:0;right:0;z-index:120;padding:22px 0;transition:background .5s var(--ease),padding .5s var(--ease),border-color .5s;border-bottom:1px solid transparent}
+  nav.scrolled{background:rgba(6,6,7,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);padding:14px 0;border-bottom:1px solid var(--hair)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:var(--display);font-weight:900;font-size:21px;letter-spacing:.02em;text-transform:uppercase}
+  .logo .d{color:var(--gold)}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a:not(.btn){color:var(--bone);text-decoration:none;font-size:14px;font-weight:500;opacity:.82;position:relative}
+  .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease)}
+  .nav-links a:not(.btn):hover::after{width:100%}
+  .btn{display:inline-block;font-family:var(--body);font-weight:600;font-size:14px;color:#0A0A0A;background:var(--grad);border:none;border-radius:100px;padding:12px 26px;cursor:pointer;position:relative;overflow:hidden;text-decoration:none;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(216,162,74,.35)}
+  .btn::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left .7s var(--ease)}
+  .btn:hover::after{left:170%}
+  .btn.lg{font-size:16px;padding:18px 42px}
+  .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+  .glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.45;will-change:transform}
+  .glow.a{width:540px;height:540px;background:radial-gradient(circle,rgba(216,162,74,.5),transparent 70%);top:-90px;right:-40px}
+  .glow.b{width:440px;height:440px;background:radial-gradient(circle,rgba(169,120,31,.5),transparent 70%);bottom:-140px;left:-120px}
+  .sweep{position:absolute;top:0;bottom:0;left:-60%;width:48%;background:linear-gradient(105deg,transparent,rgba(247,227,163,.2) 45%,transparent);filter:blur(12px);animation:sweep 2.8s var(--ease) .3s both;pointer-events:none}
+  @keyframes sweep{0%{left:-60%;opacity:0}20%{opacity:1}100%{left:135%;opacity:0}}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(130% 90% at 62% 32%,transparent 42%,rgba(0,0,0,.72));pointer-events:none}
+  .hero-in{position:relative;z-index:3}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+  .js .eyebrow{opacity:0;transform:translateY(14px);animation:fade .9s var(--ease) .3s forwards}
+  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+  @keyframes fade{to{opacity:1;transform:none}}
+  .hero h1{font-family:var(--display);font-weight:900;font-size:clamp(52px,11vw,168px);line-height:.84;letter-spacing:-.015em;text-transform:uppercase;margin:22px 0 8px;overflow:visible;white-space:nowrap}
+  .hero .tag{font-family:var(--display);font-weight:800;font-size:clamp(22px,4.4vw,46px);letter-spacing:-.01em;line-height:1.02}
+  .hero .tag .sep{color:var(--gold);font-weight:400;margin:0 .2em}
+  .hero p.lead{max-width:540px;margin-top:28px;color:var(--grey);font-size:clamp(15px,1.7vw,18px)}
+  .hero .cta{margin-top:38px;display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+  .ghost{color:var(--bone);text-decoration:none;font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:8px;opacity:.85;transition:gap .3s var(--ease),color .3s}
+  .ghost:hover{color:var(--gold-hi);gap:12px}
+  .scrollcue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;font-family:var(--mono);font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--grey);animation:blink 2.8s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:.3}50%{opacity:.85}}
+  .sec{padding:150px 0}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--grey);margin-bottom:26px;display:inline-block}
+  .kick em{font-style:normal;color:var(--gold);margin-right:14px}
+  h2.big{font-family:var(--display);font-weight:900;font-size:clamp(34px,5.6vw,68px);line-height:1;letter-spacing:-.03em;text-transform:uppercase}
+  .stmt{padding:140px 0;text-align:center}
+  .stmt h2{font-family:var(--display);font-weight:900;font-size:clamp(40px,8.4vw,116px);line-height:.9;letter-spacing:-.035em;text-transform:uppercase}
+  .stmt p{max-width:54ch;margin:34px auto 0;color:var(--grey);font-size:18px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  .stat{background:var(--black);padding:52px 24px;text-align:center}
+  .stat .n{font-family:var(--display);font-weight:900;font-size:clamp(44px,7vw,82px);line-height:1;letter-spacing:-.02em}
+  .stat .l{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-top:16px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+  .step{border:1px solid var(--line);border-radius:16px;padding:40px;background:linear-gradient(180deg,var(--panel),var(--black))}
+  .step .no{font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:.2em}
+  .step h3{font-family:var(--display);font-weight:800;font-size:25px;letter-spacing:-.01em;margin:20px 0 12px}
+  .step p{color:var(--grey);font-size:15.5px}
+  .pin-outer{height:260vh;position:relative}
+  .pin-inner{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--black)}
+  .pin-bg{position:absolute;inset:0;background:radial-gradient(85% 65% at 50% 42%,rgba(216,162,74,.09),transparent 60%)}
+  .frame{position:absolute;inset:0;display:flex;align-items:center;opacity:0;transition:opacity .8s var(--ease),transform .8s var(--ease);transform:translateY(28px);pointer-events:none}
+  .frame.active{opacity:1;transform:none}
+  .frame .wrap{width:100%}
+  .frame .idx{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+  .frame h3{font-family:var(--display);font-weight:900;font-size:clamp(46px,10vw,128px);line-height:.88;letter-spacing:-.035em;text-transform:uppercase;margin:20px 0 22px}
+  .frame p{max-width:52ch;color:var(--grey);font-size:clamp(16px,1.9vw,20px)}
+  .frame .zero{font-family:var(--display);font-weight:900;font-size:clamp(60px,17vw,250px);line-height:.8;position:absolute;right:5%;top:50%;transform:translateY(-50%);opacity:.12}
+  .pin-nav{position:absolute;bottom:46px;left:50%;transform:translateX(-50%);display:flex;gap:10px}
+  .dot{width:36px;height:3px;border-radius:3px;background:rgba(239,235,225,.18);transition:background .5s var(--ease)}
+  .dot.on{background:var(--grad)}
+  .quote{padding:160px 0;text-align:center}
+  .quote blockquote{font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(30px,5.6vw,68px);line-height:1.05;letter-spacing:-.01em;max-width:17ch;margin:0 auto}
+  .quote cite{display:block;margin-top:30px;font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--grey);font-style:normal}
+  .svc-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:56px}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{border:1px solid var(--line);border-radius:18px;padding:38px;background:var(--panel);position:relative;overflow:hidden;transition:transform .5s var(--ease),border-color .5s var(--ease)}
+  .card:hover{transform:translateY(-6px);border-color:var(--gold)}
+  .card::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(216,162,74,.1),transparent 48%);opacity:0;transition:opacity .5s var(--ease)}
+  .card:hover::after{opacity:1}
+  .card.flag{grid-column:span 2;background:linear-gradient(120deg,var(--leather),var(--panel))}
+  .card .t{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);position:relative;z-index:2}
+  .card h3{font-family:var(--display);font-weight:800;font-size:29px;letter-spacing:-.01em;margin:18px 0 12px;position:relative;z-index:2}
+  .card p{color:var(--grey);font-size:15.5px;max-width:46ch;position:relative;z-index:2}
+  .trust{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:56px}
+  .badge{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;border:1px solid var(--line);border-radius:100px;padding:11px 20px;color:var(--bone)}
+  .badge b{color:var(--gold);font-weight:700;margin-right:6px}
+  /* fleet: highlight + uniform strip, tap to reveal colour */
+  .fleet{padding:150px 0 60px}
+  .fleet .head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+  .fleet .head p{color:var(--grey);font-size:14px;max-width:44ch}
+  .hl{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-bottom:14px;aspect-ratio:1500/640;cursor:pointer}
+  .hl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .hl img.c{filter:contrast(1.03)}
+  .hl img.bw{filter:grayscale(1) contrast(1.03) brightness(.9);opacity:1;transition:opacity .7s var(--ease)}
+  .hl.lit img.bw{opacity:0}
+  .hl::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,6,7,.7),transparent 55%);pointer-events:none}
+  .hl .cap{position:absolute;left:32px;bottom:28px;z-index:3}
+  .hl .cap .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi)}
+  .hl .cap h3{font-family:var(--display);font-weight:900;font-size:clamp(26px,4vw,44px);letter-spacing:-.02em;text-transform:uppercase;margin-top:8px}
+  .tapc{position:absolute;right:16px;top:14px;z-index:3;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone);opacity:.72;display:inline-flex;align-items:center;gap:7px;pointer-events:none}
+  .tapc::before{content:"";width:7px;height:7px;border-radius:50%;border:1px solid var(--gold);background:transparent;transition:background .4s}
+  .lit .tapc::before{background:var(--gold)}
+  .strip{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .shot{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;border:1px solid var(--hair);cursor:pointer}
+  .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .shot img.c{filter:contrast(1.03)}
+  .shot img.bw{filter:grayscale(1) contrast(1.02) brightness(.9);opacity:.85;transition:opacity .6s var(--ease)}
+  .shot:hover img.bw{opacity:.72}
+  .shot.lit img.bw{opacity:0}
+  .shot span:not(.tapc){position:absolute;left:12px;bottom:9px;z-index:3;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone);opacity:.85}
+  .shot::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 55%,rgba(6,6,7,.6));pointer-events:none}
+  .shot .tapc{right:10px;top:9px}
+  .shot .tapc::before{width:8px;height:8px}
+
+  .about{padding:150px 0}
+  .about .grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:start}
+  .about .lead-h{font-family:var(--display);font-weight:900;font-size:clamp(30px,4.4vw,56px);line-height:1;letter-spacing:-.03em;text-transform:uppercase}
+  .about .lead-h .gsmall{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-bottom:20px;font-weight:700}
+  .about .sig{margin-top:34px;font-family:var(--serif);font-style:italic;font-size:26px;color:var(--gold-hi)}
+  .about .sig small{display:block;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-top:8px}
+  .about .body p{color:#cfc9bd;font-size:16px;line-height:1.8;margin-bottom:18px}
+  
+  
+  @media(max-width:900px){.about .grid{grid-template-columns:1fr;gap:32px}}
+  .final{text-align:center;padding:170px 0;position:relative;overflow:hidden}
+  .final .glow2{position:absolute;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(216,162,74,.24),transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);filter:blur(70px)}
+  .final h2{position:relative;font-family:var(--display);font-weight:900;font-size:clamp(42px,9vw,124px);line-height:.88;letter-spacing:-.035em;text-transform:uppercase}
+  .final p{position:relative;color:var(--grey);font-size:19px;margin:26px auto 10px;max-width:46ch}
+  .final .call{position:relative;font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:36px}
+  .final .cta-row{position:relative;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+  footer{border-top:1px solid var(--hair);padding:74px 0 60px}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:34px;margin-bottom:56px}
+  .foot-links{display:flex;gap:48px;flex-wrap:wrap}
+  .foot-col h4{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .foot-col a{display:block;color:var(--grey);text-decoration:none;font-size:14px;margin-bottom:11px}
+  .foot-col a:hover{color:var(--bone)}
+  .foot-word{font-family:var(--display);font-weight:900;font-size:clamp(52px,13vw,168px);text-transform:uppercase;letter-spacing:-.02em;line-height:.82;border-top:1px solid var(--hair);padding-top:44px;overflow:visible;white-space:nowrap}
+  .foot-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-top:26px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+  @media(max-width:900px){
+    .glow{opacity:.28;filter:blur(70px)}
+    .nav-links a:not(.btn){display:none}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .steps,.svc-grid{grid-template-columns:1fr}
+    .card.flag{grid-column:auto}
+    .strip{grid-template-columns:repeat(2,1fr)}
+    .hl .cap{left:20px;bottom:18px}
+    .sec{padding:96px 0}.frame .zero{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){.eyebrow{animation:none!important;opacity:1!important;transform:none!important}.glow{display:none}}
+
+  .modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:22px}
+  .modal.open{display:flex}
+  .modal .ov{position:absolute;inset:0;background:rgba(4,4,6,.74);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .modal .panel{position:relative;z-index:2;width:100%;max-width:560px;max-height:92vh;overflow:auto;background:linear-gradient(180deg,#101013,#08080a);border:1px solid var(--line);border-radius:20px;padding:40px 38px;box-shadow:0 40px 120px rgba(0,0,0,.6)}
+  .modal .x{position:absolute;top:14px;right:18px;z-index:3;background:none;border:none;color:var(--grey);font-size:26px;line-height:1;cursor:pointer}
+  .modal .x:hover{color:var(--gold)}
+  .modal .k{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+  .modal h3{font-family:var(--display);font-weight:900;font-size:32px;letter-spacing:-.02em;text-transform:uppercase;line-height:.95}
+  .modal .sub{color:var(--grey);font-size:14px;margin-top:10px;margin-bottom:22px}
+  .modal label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:16px 0 7px}
+  .modal input,.modal select{width:100%;background:#08080a;border:1px solid var(--line);border-radius:10px;color:var(--bone);font-family:var(--body);font-size:15px;padding:13px 14px;outline:none;transition:border-color .3s}
+  .modal input::placeholder{color:#5c584f}
+  .modal input:focus,.modal select:focus{border-color:var(--gold)}
+  .modal input[type=date],.modal input[type=time]{color-scheme:dark}
+  .modal select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 20px) 20px,calc(100% - 14px) 20px;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+  .modal .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .modal .send{margin-top:28px;width:100%;text-align:center;border:none;font-size:16px;padding:17px}
+  .modal .note{margin-top:14px;text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
+  .modal .note b{color:var(--gold-hi)}
+  @media(max-width:560px){.modal .row2{grid-template-columns:1fr}.modal .panel{padding:32px 24px}}
+
+  .adm{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;padding:22px;background:radial-gradient(120% 90% at 50% 20%,rgba(216,162,74,.08),transparent 60%),rgba(3,3,4,.96)}
+  .adm.open{display:flex}
+  .adm-scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(216,162,74,.04) 0,rgba(216,162,74,.04) 1px,transparent 1px,transparent 4px);opacity:.5}
+  .adm-scan::after{content:"";position:absolute;left:0;right:0;height:120px;background:linear-gradient(180deg,transparent,rgba(216,162,74,.12),transparent);animation:admscan 5s linear infinite}
+  @keyframes admscan{0%{top:-120px}100%{top:100%}}
+  .adm-box{position:relative;z-index:2;width:100%;max-width:420px;background:linear-gradient(180deg,#0f0f11,#08080a);border:1px solid var(--line);border-radius:18px;padding:38px}
+  .adm-dash{max-width:860px;max-height:90vh;overflow:auto}
+  .adm-x{position:absolute;top:12px;right:16px;background:none;border:none;color:var(--grey);font-size:24px;cursor:pointer}
+  .adm-x:hover{color:var(--gold)}
+  .adm-k{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .adm h3{font-family:var(--display);font-weight:900;font-size:26px;text-transform:uppercase;letter-spacing:-.01em}
+  .adm h3 span{color:var(--gold)}
+  .adm-sub{color:var(--grey);font-size:13px;margin:8px 0 18px}
+  .adm input,.adm select{width:100%;background:#08080a;border:1px solid var(--line);border-radius:10px;color:var(--bone);font-family:var(--mono);font-size:14px;padding:12px 14px;outline:none}
+  .adm input:focus,.adm select:focus{border-color:var(--gold)}
+  .adm-err{color:#e0663f;font-family:var(--mono);font-size:12px;margin-top:12px;min-height:16px;letter-spacing:.05em}
+  .adm-granted{font-family:var(--mono);letter-spacing:.3em;color:var(--gold-hi);text-align:center;padding:20px 0;font-size:14px;text-transform:uppercase}
+  .adm-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .adm-tools{display:flex;gap:8px;flex-wrap:wrap}
+  .adm-tools select,.adm-tools button{width:auto;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:9px 13px;background:#0c0c0e;border:1px solid var(--line);border-radius:8px;color:var(--bone);cursor:pointer}
+  .adm-tools button:hover{border-color:var(--gold);color:var(--gold-hi)}
+  .adm-list{display:flex;flex-direction:column;gap:10px}
+  .adm-empty{color:var(--grey);font-family:var(--mono);font-size:13px;padding:30px 0;text-align:center}
+  .rq{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#0b0b0d}
+  .rq.done{opacity:.5}
+  .rq .rq-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+  .rq .rq-d{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+  .rq .rq-ts{font-family:var(--mono);font-size:10px;color:var(--grey)}
+  .rq .rq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 20px;font-size:13.5px;color:#cfc9bd}
+  .rq .rq-grid b{color:var(--grey);font-weight:400;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:1px}
+  .rq a{color:var(--gold-hi);text-decoration:none}
+  .rq .rq-act{display:flex;gap:8px;margin-top:12px}
+  .rq .rq-act button{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;background:transparent;border:1px solid var(--line);border-radius:7px;color:var(--grey);cursor:pointer}
+  .rq .rq-act button:hover{border-color:var(--gold);color:var(--gold-hi)}
+  .adm-note{margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--grey);line-height:1.7;border-top:1px solid var(--hair);padding-top:16px}
+
+  .price-intro{color:var(--grey);font-size:17px;max-width:54ch;margin-top:12px}
+  .pricelist{margin-top:52px;border-top:1px solid var(--hair)}
+  .prow{display:flex;justify-content:space-between;align-items:baseline;gap:28px;padding:26px 2px;border-bottom:1px solid var(--hair)}
+  .pname{font-family:var(--display);font-weight:800;font-size:clamp(20px,2.4vw,24px);letter-spacing:-.01em}
+  .pname .pdesc{display:block;font-family:var(--body);font-weight:400;font-size:14.5px;color:var(--grey);letter-spacing:0;line-height:1.6;margin-top:9px;max-width:58ch}
+  .pprice{font-family:var(--mono);font-weight:700;font-size:17px;color:var(--gold-hi);white-space:nowrap;letter-spacing:.02em}
+  .strip3{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:44px 0 0;max-width:840px}
+  .strip3 .shot{aspect-ratio:4/5}
+  @media(max-width:900px){.strip3{grid-template-columns:1fr;max-width:420px}}
+  .pnote{margin-top:28px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--grey);line-height:1.8}
+  .pnote b{color:var(--gold)}
+</style></head><body><div aria-hidden="true" style="position:fixed;inset:0;background:#060607;z-index:-2;pointer-events:none"></div>
+<div id="bar"></div>
+<nav id="nav"><div class="wrap nav-in"><div class="logo">Drivique<span class="d">.</span></div>
+<div class="nav-links"><a href="#werkt">Zo werkt het</a><a href="#manieren">Twee manieren</a><a href="#diensten">Diensten</a><a href="#detailing">Detailing</a><a href="#vloot">Vloot</a><a href="#over">Over</a><a href="#plan" class="btn">Plan je rit</a></div></div></nav>
+
+<header class="hero">
+  <div class="glow a" data-par="0.10"></div><div class="glow b" data-par="-0.07"></div><div class="sweep"></div>
+  <div class="wrap hero-in">
+    <span class="eyebrow">Chauffeur &amp; transport · Nederland</span>
+    <h1><span class="mline"><span class="goldflat">Drivique.</span></span></h1>
+    <div class="tag"><span class="mline" style="--d:.08s"><span>Jouw auto<span class="sep">/</span>Onze chauffeur.</span></span></div>
+    <p class="lead reveal" style="--d:.2s">Je plant je rit ruim vooruit. Daarna rijdt je eigen chauffeur jouw auto, of hij gaat op de trailer. Jij regelt het één keer en denkt er nooit meer aan.</p>
+    <div class="cta reveal" style="--d:.3s"><a href="#plan" class="btn lg">Plan je rit</a><a href="#werkt" class="ghost">Zo werkt het →</a></div>
+  </div>
+  <div class="scrollcue">Scroll</div>
+</header>
+
+<section class="stmt wrap">
+  <h2><span class="mline"><span>Je laat je auto</span></span><span class="mline" style="--d:.08s"><span class="gold">nooit</span> <span>achter.</span></span></h2>
+  <p class="reveal" style="--d:.2s">Geen taxi. Geen dure parkeerplek bij Schiphol. Geen auto die na een avond in de stad blijft staan. Jij plant vooruit, wij zorgen dat jij én je auto aankomen waar ze moeten zijn.</p>
+</section>
+
+<section class="wrap" style="padding:20px 0 70px"><div class="stats reveal">
+  <div class="stat"><div class="n gold" data-count="7">0</div><div class="l">dagen vooruit plannen</div></div>
+  <div class="stat"><div class="n gold" data-count="0" data-suffix=" km">0</div><div class="l">extra op de trailer</div></div>
+  <div class="stat"><div class="n gold" data-count="1">0</div><div class="l">vaste eigen chauffeur</div></div>
+  <div class="stat"><div class="n gold" data-count="100" data-suffix="%">0</div><div class="l">verzekerd</div></div>
+</div></section>
+
+<section class="sec wrap" id="werkt">
+  <span class="kick reveal"><em>01</em>Zo werkt het</span>
+  <h2 class="big"><span class="mline"><span>Eén keer regelen.</span></span><span class="mline" style="--d:.08s"><span>Nooit meer aan denken.</span></span></h2>
+  <div class="steps">
+    <div class="step reveal" style="--d:.05s"><div class="no">01</div><h3>Plan je rit</h3><p>Laat weten waarheen en wanneer. Meestal weet je het al ruim van tevoren: dat feest, die vlucht, die beurs.</p></div>
+    <div class="step reveal" style="--d:.14s"><div class="no">02</div><h3>Je vaste chauffeur</h3><p>Je krijgt één vaste, gescreende chauffeur toegewezen. Geen wisselende vreemden. Je stemt zelf rechtstreeks af.</p></div>
+    <div class="step reveal" style="--d:.23s"><div class="no">03</div><h3>Gereden of getrailerd</h3><p>Hij rijdt jouw auto, of laadt hem op de trailer als er geen kilometer bij mag. Jij leunt achterover.</p></div>
+  </div>
+</section>
+
+<section class="pin-outer" id="manieren"><div class="pin-inner"><div class="pin-bg"></div>
+  <div class="frame active" data-frame="0"><div class="wrap">
+    <div class="idx">Manier 01 · Gereden</div>
+    <h3>Je chauffeur<br>rijdt jouw auto.</h3>
+    <p>Jij zit achterin, of je auto komt alleen. Naar het feest en veilig weer thuis, naar Schiphol en terug. Je eigen auto, jouw stoel, zonder dat je zelf hoeft te sturen.</p>
+  </div></div>
+  <div class="frame" data-frame="1"><div class="wrap">
+    <div class="idx">Manier 02 · Getrailerd</div>
+    <h3 class="gold">Nul kilometer<br>extra.</h3>
+    <p>Voor je klassieker of showauto. Op onze trailer naar de concours, de veiling of de beurs. Precies zoals je hem bewaart, geen kilometer erbij.</p>
+  </div><div class="zero gold">0KM</div></div>
+  <div class="pin-nav"><div class="dot on" data-dot="0"></div><div class="dot" data-dot="1"></div></div>
+</div></section>
+
+<section class="quote wrap">
+  <blockquote class="reveal">Achterin je eigen auto. <span class="gold">Dát</span> is aankomen.</blockquote>
+  <cite class="reveal" style="--d:.1s">Drivique</cite>
+</section>
+
+<section class="sec wrap" id="diensten">
+  <div class="svc-head">
+    <div><span class="kick reveal"><em>02</em>Diensten</span>
+    <h2 class="big"><span class="mline"><span>Voor elke rit</span></span><span class="mline" style="--d:.08s"><span>die je ziet aankomen.</span></span></h2></div>
+    <a href="#plan" class="btn reveal" style="--d:.1s">Plan je rit</a>
+  </div>
+  <div class="svc-grid">
+    <div class="card flag reveal"><div class="t">Flagship</div><h3>Nacht</h3><p>Weet je dat het laat wordt? Regel het vooraf. Je chauffeur rijdt jou en je auto veilig thuis. Je slaapt in je eigen bed en je auto staat 's ochtends gewoon voor de deur.</p></div>
+    <div class="card reveal" style="--d:.1s"><div class="t">Onderscheidend</div><h3>Airport</h3><p>Wij brengen je naar Schiphol in je eigen auto en rijden hem weer naar huis. Geen week parkeergeld. Bij terugkomst staan we klaar.</p></div>
+    <div class="card reveal"><div class="t">Liefhebbers · 0 km</div><h3>Concours</h3><p>Je klassieker of pronkstuk op de trailer naar beurs, veiling of concours. Nul extra kilometers op de teller.</p></div>
+    <div class="card reveal" style="--d:.1s"><div class="t">Abonnement</div><h3>Zorg</h3><p>Vaste chauffeur voor wie zelf niet meer rijdt maar de auto wil houden. Vaste ritten, vast gezicht, in de eigen vertrouwde auto.</p></div>
+    <div class="card reveal" style="--d:.2s"><div class="t">Transport</div><h3>Relocate</h3><p>Auto van A naar B. Verhuizing, dealer, tweede huis. Gereden of getrailerd, jij kiest. Jij hoeft nergens te zijn.</p></div>
+    <div class="card reveal"><div class="t">Zakelijk</div><h3>Business</h3><p>Vaste chauffeur, vaste ritten, één factuur per maand. Werk door op de achterbank en krijg je reistijd terug.</p></div>
+  </div>
+  <div class="trust reveal" style="--d:.1s">
+    <span class="badge"><b>✓</b>Gescreende chauffeurs</span><span class="badge"><b>✓</b>Volledig verzekerd</span><span class="badge"><b>✓</b>Je eigen vaste chauffeur</span><span class="badge"><b>✓</b>Op trailer: 0 km</span><span class="badge"><b>✓</b>Vaste prijs vooraf</span>
+  </div>
+</section>
+
+<section class="sec wrap" id="detailing">
+  <span class="kick reveal"><em>03</em>Wassen &amp; detailing</span>
+  <h2 class="big"><span class="mline"><span>Ook je lak</span></span><span class="mline" style="--d:.08s"><span>in topconditie.</span></span></h2>
+  <p class="price-intro reveal" style="--d:.14s">Dezelfde zorg voor de buitenkant. Met de hand gewassen, met oog voor detail en, als je wilt, langdurig beschermd — zodat je auto blijft stralen zoals op dag één.</p>
+  <div class="strip3 reveal" style="--d:.06s"><div class="shot"><img class="c" src="images/photo01.jpg" alt="Foamwash" loading="lazy"><img class="bw" src="images/photo02.jpg" alt="" aria-hidden="true"><span class="tapc"></span><span>Foamwash</span></div><div class="shot"><img class="c" src="images/photo03.jpg" alt="Polijsten & coating" loading="lazy"><img class="bw" src="images/photo04.jpg" alt="" aria-hidden="true"><span class="tapc"></span><span>Polijsten & coating</span></div></div>
+  <div class="pricelist reveal" style="--d:.06s">
+    <div class="prow"><div class="pname">Wassen &mdash; binnen &amp; buiten<span class="pdesc">Complete handwas: interieur gestofzuigd en gereinigd, exterieur streeploos gewassen en afgewerkt.</span></div><div class="pprice">&euro;300</div></div>
+    <div class="prow"><div class="pname">Wax zonder polijsten<span class="pdesc">Een beschermende waxlaag over de lak. Diepe glans en langdurige bescherming, zonder voorbewerking.</span></div><div class="pprice">&euro;490</div></div>
+    <div class="prow"><div class="pname">Wax met polijsten<span class="pdesc">Eerst polijsten om krasjes en swirls weg te werken, daarna waxen. Voor het mooiste, egaalste resultaat.</span></div><div class="pprice">&euro;500</div></div>
+    <div class="prow"><div class="pname">Coatings<span class="pdesc">De ultieme, meerjarige bescherming voor wie het beste voor zijn auto wil. Volledig op maat.</span></div><div class="pprice">Op aanvraag</div></div>
+  </div>
+  <p class="pnote reveal" style="--d:.1s">Een <b>waxbehandeling</b> beschermt je lak <b>2 tot 3 jaar</b> tegen weer, vuil en uv. <b>Coatings</b> zijn maatwerk &mdash; prijs op aanvraag.</p>
+</section>
+<section class="fleet wrap" id="vloot"><div class="head reveal"><span class="kick" style="margin:0"><em>04</em>Onze vloot</span><p>Een greep uit de auto's die we rijden en vervoeren. Tik op een foto voor kleur.</p></div><div class="hl reveal"><img class="c" src="images/photo05.jpg" alt="Singer 911 op transport" loading="lazy"><img class="bw" src="images/photo06.jpg" alt="" aria-hidden="true"><span class="tapc">Kleur</span><div class="cap"><div class="k">Highlight · Getrailerd, 0 km</div><h3>Singer 911</h3></div></div><div class="strip reveal" style="--d:.06s"><div class="shot"><img class="c" src="images/photo07.jpg" alt="Defender" loading="lazy"><img class="bw" src="images/photo08.jpg" alt="" aria-hidden="true"><span class="tapc"></span><span>Defender</span></div>
+    <div class="shot"><img class="c" src="images/photo09.jpg" alt="BMW X5" loading="lazy"><img class="bw" src="images/photo10.jpg" alt="" aria-hidden="true"><span class="tapc"></span><span>BMW X5</span></div>
+    <div class="shot"><img class="c" src="images/photo11.jpg" alt="BMW M5" loading="lazy"><img class="bw" src="images/photo12.jpg" alt="" aria-hidden="true"><span class="tapc"></span><span>BMW M5</span></div>
+    <div class="shot"><img class="c" src="images/photo13.jpg" alt="BMW X3" loading="lazy"><img class="bw" src="images/photo14.jpg" alt="" aria-hidden="true"><span class="tapc"></span><span>BMW X3</span></div>
+    <div class="shot"><img class="c" src="images/photo15.jpg" alt="Evoque" loading="lazy"><img class="bw" src="images/photo16.jpg" alt="" aria-hidden="true"><span class="tapc"></span><span>Evoque</span></div>
+    <div class="shot"><img class="c" src="images/photo17.jpg" alt="Porsche GT3 Touring" loading="lazy"><img class="bw" src="images/photo18.jpg" alt="" aria-hidden="true"><span class="tapc"></span><span>Porsche GT3 Touring</span></div></div></section>
+
+<section class="about wrap" id="over">
+  <div class="grid">
+    <div class="reveal">
+      <h2 class="lead-h"><span class="gsmall">Over Drivique</span>Hoe het<br>is begonnen</h2>
+      <div class="sig">Joep Moll<small>Oprichter · 22 jaar</small></div>
+    </div>
+    <div class="body reveal" style="--d:.1s">
+      <p>Ik ben Joep Moll, een jongen van 22 jaar, en ik heb altijd al een grote interesse gehad in auto's. Inmiddels ben ik al ruim 5 jaar werkzaam binnen het luxe segment van de automotive, waar ik veel ervaring heb opgedaan met verschillende soorten voertuigen en de hoge verwachtingen die klanten binnen dit segment hebben.</p>
+      <p>Vanuit deze passie en ervaring ben ik gaan kijken hoe ik iets binnen de automotive wereld kon opbouwen dat niet alleen bij mijn interesse past, maar ook echt waarde toevoegt voor anderen.</p>
+      <p>Daaruit is DRIVIQUE ontstaan: een professionele chauffeursdienst en trailerservice voor mensen en bedrijven die hun auto veilig, professioneel en zonder zorgen van A naar B willen laten vervoeren.</p>
+      <p>Of het nu gaat om het ophalen en afleveren van een auto, het transporteren van een voertuig met een trailer of het inschakelen van een chauffeur: bij DRIVIQUE staat één ding centraal — de auto van de klant moet met dezelfde zorg worden behandeld als wanneer het onze eigen auto zou zijn.</p>
+      <p>Daarnaast biedt DRIVIQUE wagenparkbeheer en aanvullende services voor zowel particuliere als zakelijke klanten. Wij kunnen het volledige traject rondom een voertuig uit handen nemen. Denk hierbij aan het naar een garage of dealer brengen van een auto voor onderhoud, een APK of reparatie, het ophalen van een voertuig na werkzaamheden, een bandenwissel of detailing en het verplaatsen van voertuigen tussen verschillende locaties.</p>
+      <p>Hiermee willen we vooral bedrijven en eigenaren van meerdere voertuigen ontzorgen. De klant hoeft zich niet bezig te houden met de logistiek rondom zijn wagenpark: wij zorgen ervoor dat de auto op het juiste moment op de juiste plek komt.</p>
+      <p>Met DRIVIQUE willen we ons onderscheiden door persoonlijke service, betrouwbaarheid en een professionele uitstraling. Geen standaard transportdienst, maar een service waarbij we meedenken met de klant en ervoor zorgen dat het volledige proces soepel verloopt.</p>
+      <p>Wat begon vanuit mijn passie voor auto's en ruim vijf jaar ervaring binnen het luxe automotive segment, is daarmee uitgegroeid tot het begin van een professioneel automotive bedrijf. Met DRIVIQUE hebben we de ambitie om uit te groeien tot een betrouwbare partner voor chauffeursdiensten, voertuigtransport en wagenparkbeheer.</p>
+    </div>
+  </div>
+</section>
+<section class="final" id="plan"><div class="glow2"></div><div class="wrap">
+  <h2><span class="mline"><span>Plan je rit.</span></span></h2>
+  <p class="reveal" style="--d:.12s">Vertel ons waarheen en wanneer. Wij koppelen je aan je vaste chauffeur, gereden of op trailer.</p>
+  <div class="call reveal" style="--d:.16s">Liever bellen? <a href="tel:+31646064016" style="color:var(--gold-hi);text-decoration:none">+31 6 46064016</a></div>
+  <div class="cta-row reveal" style="--d:.22s"><a href="#" class="btn lg">Plan je rit</a><a href="#diensten" class="ghost">Bekijk diensten →</a></div>
+</div></section>
+
+<footer><div class="wrap"><div class="foot-top">
+  <div style="max-width:320px"><div class="logo" style="font-size:25px;margin-bottom:16px">Drivique<span class="d">.</span></div>
+  <p style="color:var(--grey);font-size:14px">Jouw auto. Onze chauffeur. Gepland vervoer en trailertransport door heel Nederland.</p></div>
+  <div class="foot-links">
+    <div class="foot-col"><h4>Diensten</h4><a href="#diensten">Nacht</a><a href="#diensten">Airport</a><a href="#diensten">Concours</a><a href="#diensten">Relocate</a></div>
+    <div class="foot-col"><h4>Drivique</h4><a href="#werkt">Zo werkt het</a><a href="#manieren">Twee manieren</a><a href="#vloot">Vloot</a></div>
+    <div class="foot-col"><h4>Contact</h4><a href="tel:+31646064016">+31 6 46064016</a><a href="mailto:drivique@icloud.com">drivique@icloud.com</a><a href="#">Word chauffeur</a></div>
+  </div></div>
+  <div class="foot-word goldflat">Drivique.</div>
+  <div class="foot-meta"><span>© 2026 Drivique</span><span>Jouw auto · Onze chauffeur</span></div>
+</div></footer>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var nav=document.getElementById('nav'),bar=document.getElementById('bar');
+  var pars=[].slice.call(document.querySelectorAll('[data-par]'));
+  var pin=document.getElementById('manieren');
+  var frames=[].slice.call(document.querySelectorAll('.frame'));
+  var dots=[].slice.call(document.querySelectorAll('.dot'));
+  var targetY=window.pageYOffset||0, curY=targetY;
+  window.addEventListener('scroll',function(){targetY=window.pageYOffset;},{passive:true});
+  var docH=function(){return document.documentElement.scrollHeight-window.innerHeight;};
+  function frame(){
+    curY += (targetY-curY)*0.12;              // eased scroll for buttery parallax
+    if(Math.abs(targetY-curY)<0.15) curY=targetY;
+    var h=docH(); bar.style.width=(h>0?targetY/h*100:0)+'%';
+    nav.classList.toggle('scrolled',targetY>40);
+    pars.forEach(function(el){var s=parseFloat(el.getAttribute('data-par'))||0;el.style.transform='translate3d(0,'+(curY*s)+'px,0)';});
+    if(pin){var r=pin.getBoundingClientRect();var total=pin.offsetHeight-window.innerHeight;var prog=Math.min(1,Math.max(0,(-r.top)/total));var idx=prog>0.5?1:0;frames.forEach(function(f,i){f.classList.toggle('active',i===idx)});dots.forEach(function(d,i){d.classList.toggle('on',i===idx)});}
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.reveal,.mline').forEach(function(el){io.observe(el)});
+  setTimeout(function(){document.querySelectorAll('.reveal,.mline').forEach(function(el){el.classList.add('in')});},2600);
+  var counted=false,sw=document.querySelector('.stats');
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!counted){counted=true;document.querySelectorAll('[data-count]').forEach(function(el){var t=parseInt(el.getAttribute('data-count'),10),s=el.getAttribute('data-suffix')||'';if(t===0){el.textContent='0'+s;return;}var st=null;function step(ts){if(!st)st=ts;var p=Math.min(1,(ts-st)/1500);el.textContent=Math.round((1-Math.pow(1-p,3))*t)+s;if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);});}});},{threshold:0.4});
+  if(sw)cio.observe(sw);
+  document.querySelectorAll('.shot,.hl').forEach(function(el){el.addEventListener('click',function(){el.classList.toggle('lit');});});
+})();
+</script>
+<div class="modal" id="planModal" aria-hidden="true">
+  <div class="ov" data-close></div>
+  <div class="panel" role="dialog" aria-modal="true" aria-label="Plan je rit">
+    <button class="x" data-close aria-label="Sluiten">&times;</button>
+    <span class="k">Plan je rit</span>
+    <h3>Vertel ons de rit.</h3>
+    <p class="sub">Vul in wat je weet. Bij versturen opent je mail met alles al ingevuld — wij nemen contact op om te bevestigen.</p>
+    <div class="row2">
+      <div><label>Naam</label><input id="pf_naam" type="text" placeholder="Je naam"></div>
+      <div><label>Telefoon</label><input id="pf_tel" type="tel" placeholder="06 ..."></div>
+    </div>
+    <label>Welke dienst</label>
+    <select id="pf_dienst">
+      <option>Nacht</option><option>Airport</option><option>Concours (trailer)</option>
+      <option>Zorg</option><option>Relocate</option><option>Business</option>
+      <option>Wagenparkbeheer</option><option>Wassen &amp; detailing</option><option>Anders</option>
+    </select>
+    <label>Welke auto</label>
+    <input id="pf_auto" type="text" placeholder="Bijv. BMW X5, Porsche 911, Defender">
+    <div class="row2">
+      <div><label>Ophalen bij</label><input id="pf_van" type="text" placeholder="Adres of plaats"></div>
+      <div><label>Waarheen</label><input id="pf_naar" type="text" placeholder="Bestemming"></div>
+    </div>
+    <div class="row2">
+      <div><label>Welke dag</label><input id="pf_datum" type="date"></div>
+      <div><label>Hoe laat</label><input id="pf_tijd" type="time"></div>
+    </div>
+    <a href="#" class="btn send" id="pf_send">Verstuur aanvraag</a>
+    <div class="note">Wij reageren meestal <b>binnen 24 uur</b>.</div>
+  </div>
+</div>
+<script>
+(function(){
+  var m=document.getElementById('planModal');
+  function open(e){if(e)e.preventDefault();m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+  function close(){m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  // wire every "Plan je rit" link/button
+  [].slice.call(document.querySelectorAll('a')).forEach(function(a){
+    if(a.textContent.trim().toLowerCase()==='plan je rit'){a.addEventListener('click',open);}
+  });
+  m.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',close);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+  document.getElementById('pf_send').addEventListener('click',function(e){
+    e.preventDefault();
+    var dienst=v('pf_dienst');
+    var L=[
+      'Naam: '+v('pf_naam'),
+      'Telefoon: '+v('pf_tel'),
+      'Dienst: '+dienst,
+      'Auto: '+v('pf_auto'),
+      'Ophalen bij: '+v('pf_van'),
+      'Waarheen: '+v('pf_naar'),
+      'Dag: '+v('pf_datum'),
+      'Tijd: '+v('pf_tijd'),
+      '',
+      'Verzonden via de Drivique-website.'
+    ];
+    var subject='Ritaanvraag \u2014 '+dienst;
+    var href='mailto:drivique@icloud.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(L.join('\n'));
+    try{var _a=JSON.parse(localStorage.getItem('drivique_requests')||'[]');_a.unshift({ts:Date.now(),naam:v('pf_naam'),tel:v('pf_tel'),dienst:dienst,auto:v('pf_auto'),van:v('pf_van'),naar:v('pf_naar'),datum:v('pf_datum'),tijd:v('pf_tijd'),done:false});localStorage.setItem('drivique_requests',JSON.stringify(_a));}catch(e){}
+    window.location.href=href;
+  });
+})();
+</script>
+
+<div id="adm" class="adm" aria-hidden="true">
+  <div class="adm-scan"></div>
+  <div class="adm-box" id="admLogin">
+    <button class="adm-x" data-admclose>&times;</button>
+    <div class="adm-k">Drivique · Beveiligd</div>
+    <h3>Toegang</h3>
+    <p class="adm-sub">Voer de code in om het dashboard te openen.</p>
+    <input id="admPass" type="password" placeholder="Code" autocomplete="off" autocapitalize="off">
+    <button class="btn" id="admGo" style="width:100%;margin-top:16px;text-align:center">Ontgrendel</button>
+    <div class="adm-err" id="admErr"></div>
+  </div>
+  <div class="adm-box adm-dash" id="admDash" style="display:none">
+    <button class="adm-x" data-admclose>&times;</button>
+    <div class="adm-head">
+      <div><div class="adm-k">Dashboard</div><h3>Aanvragen <span id="admCount">0</span></h3></div>
+      <div class="adm-tools">
+        <select id="admFilter"><option value="">Alle diensten</option><option>Nacht</option><option>Airport</option><option>Concours (trailer)</option><option>Zorg</option><option>Relocate</option><option>Business</option><option>Wagenparkbeheer</option><option>Wassen &amp; detailing</option><option>Anders</option></select>
+        <button id="admCsv">Export CSV</button>
+        <button id="admClear">Wis alles</button>
+      </div>
+    </div>
+    <div id="admList" class="adm-list"></div>
+    <div class="adm-note">Dit dashboard toont aanvragen die op dit apparaat/browser zijn ingestuurd. Echte aanvragen van klanten komen binnen via je e-mail (drivique@icloud.com). Voor een gedeelde inbox over alle apparaten is een database nodig.</div>
+  </div>
+</div>
+<script>
+(function(){
+  var PASS="drivique007"; // <-- wijzig deze code naar wens
+  var adm=document.getElementById('adm'), login=document.getElementById('admLogin'), dash=document.getElementById('admDash');
+  var KEY='drivique_requests';
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []}}
+  function save(a){try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){}}
+  function esc(x){return (x||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function openAdm(){adm.classList.add('open');adm.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';login.style.display='';dash.style.display='none';document.getElementById('admErr').textContent='';setTimeout(function(){document.getElementById('admPass').focus();},60);}
+  function closeAdm(){adm.classList.remove('open');adm.setAttribute('aria-hidden','true');document.body.style.overflow='';document.getElementById('admPass').value='';}
+  function fmtTs(ts){var d=new Date(ts);return d.toLocaleDateString('nl-NL')+' '+d.toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});}
+
+  function render(){
+    var arr=load(); var filt=document.getElementById('admFilter').value;
+    var list=document.getElementById('admList'); document.getElementById('admCount').textContent=arr.length;
+    var shown=arr.filter(function(r){return !filt||r.dienst===filt;});
+    if(!shown.length){list.innerHTML='<div class="adm-empty">Nog geen aanvragen'+(filt?' voor deze dienst':'')+'.</div>';return;}
+    list.innerHTML=shown.map(function(r){
+      var i=arr.indexOf(r);
+      var route=(esc(r.van)||'?')+' &rarr; '+(esc(r.naar)||'?');
+      var dt=(esc(r.datum)||'?')+' '+(esc(r.tijd)||'');
+      var tel=r.tel?('<a href="tel:'+esc(r.tel).replace(/\s/g,'')+'">'+esc(r.tel)+'</a>'):'&mdash;';
+      return '<div class="rq'+(r.done?' done':'')+'">'
+        +'<div class="rq-top"><span class="rq-d">'+esc(r.dienst)+'</span><span class="rq-ts">'+fmtTs(r.ts)+'</span></div>'
+        +'<div class="rq-grid">'
+        +'<div><b>Auto</b>'+(esc(r.auto)||'&mdash;')+'</div>'
+        +'<div><b>Route</b>'+route+'</div>'
+        +'<div><b>Datum &amp; tijd</b>'+dt+'</div>'
+        +'<div><b>Naam</b>'+(esc(r.naam)||'&mdash;')+'</div>'
+        +'<div><b>Telefoon</b>'+tel+'</div>'
+        +'</div>'
+        +'<div class="rq-act"><button data-done="'+i+'">'+(r.done?'Heropen':'Markeer klaar')+'</button><button data-del="'+i+'">Verwijder</button></div>'
+        +'</div>';
+    }).join('');
+  }
+
+  document.getElementById('admGo').addEventListener('click',function(){
+    var val=document.getElementById('admPass').value;
+    if(val===PASS){login.style.display='none';dash.style.display='';render();}
+    else{document.getElementById('admErr').textContent='Toegang geweigerd.';}
+  });
+  document.getElementById('admPass').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('admGo').click();});
+  adm.querySelectorAll('[data-admclose]').forEach(function(b){b.addEventListener('click',closeAdm);});
+  document.getElementById('admFilter').addEventListener('change',render);
+  document.getElementById('admList').addEventListener('click',function(e){
+    var d=e.target.getAttribute('data-del'), k=e.target.getAttribute('data-done');
+    if(d!==null){var a=load();a.splice(+d,1);save(a);render();}
+    else if(k!==null){var a=load();if(a[+k]){a[+k].done=!a[+k].done;save(a);render();}}
+  });
+  document.getElementById('admClear').addEventListener('click',function(){if(confirm('Alle aanvragen wissen?')){save([]);render();}});
+  document.getElementById('admCsv').addEventListener('click',function(){
+    var a=load();var head=['Datum ingestuurd','Dienst','Auto','Van','Naar','Ritdatum','Tijd','Naam','Telefoon','Klaar'];
+    var rows=a.map(function(r){return [fmtTs(r.ts),r.dienst,r.auto,r.van,r.naar,r.datum,r.tijd,r.naam,r.tel,r.done?'ja':'nee'].map(function(x){return '"'+String(x||'').replace(/"/g,'""')+'"';}).join(',');});
+    var csv=head.join(',')+'\n'+rows.join('\n');
+    var blob=new Blob([csv],{type:'text/csv'});var url=URL.createObjectURL(blob);
+    var a2=document.createElement('a');a2.href=url;a2.download='drivique-aanvragen.csv';a2.click();URL.revokeObjectURL(url);
+  });
+
+  // ---- secret entry: tap the footer wordmark 5x, or type 007 ----
+  var fw=document.querySelector('.foot-word'); var taps=0, tmr=null;
+  if(fw){fw.style.cursor='default';fw.addEventListener('click',function(){taps++;clearTimeout(tmr);tmr=setTimeout(function(){taps=0;},1500);if(taps>=5){taps=0;openAdm();}});}
+  var seq=''; document.addEventListener('keydown',function(e){
+    if(adm.classList.contains('open'))return;
+    seq=(seq+e.key).slice(-3); if(seq==='007'){seq='';openAdm();}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&adm.classList.contains('open'))closeAdm();});
+})();
+</script>
+</body></html>

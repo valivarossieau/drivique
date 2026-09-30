@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://drivique.vercel.app/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://drivique.vercel.app/diensten/nacht</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://drivique.vercel.app/diensten/airport</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://drivique.vercel.app/diensten/concours</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://drivique.vercel.app/diensten/zorg</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://drivique.vercel.app/diensten/relocate</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://drivique.vercel.app/diensten/business</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://drivique.vercel.app/diensten/detailing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+</urlset>

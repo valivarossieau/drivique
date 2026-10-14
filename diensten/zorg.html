@@ -5,14 +5,14 @@
 <title>Vaste chauffeur voor wie zelf niet meer rijdt | Drivique</title>
 <meta name="description" content="Drivique biedt een vaste, vertrouwde chauffeur voor wie zelf niet meer rijdt maar de eigen auto wil houden. Vaste ritten, vast gezicht, eigen auto.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://drivique.vercel.app/diensten/zorg">
-<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="canonical" href="https://drivique.com/diensten/zorg">
+<link rel="icon" type="image/png" href="/images/logo.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Drivique">
 <meta property="og:title" content="Vaste chauffeur voor wie zelf niet meer rijdt | Drivique"><meta property="og:description" content="Drivique biedt een vaste, vertrouwde chauffeur voor wie zelf niet meer rijdt maar de eigen auto wil houden. Vaste ritten, vast gezicht, eigen auto.">
-<meta property="og:url" content="https://drivique.vercel.app/diensten/zorg"><meta property="og:image" content="https://drivique.vercel.app/images/photo15.jpg"><meta property="og:locale" content="nl_NL">
+<meta property="og:url" content="https://drivique.com/diensten/zorg"><meta property="og:image" content="https://drivique.com/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:locale" content="nl_NL">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Vaste chauffeur voor wie zelf niet meer rijdt | Drivique">
-<meta name="twitter:description" content="Drivique biedt een vaste, vertrouwde chauffeur voor wie zelf niet meer rijdt maar de eigen auto wil houden. Vaste ritten, vast gezicht, eigen auto."><meta name="twitter:image" content="https://drivique.vercel.app/images/photo15.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;800;900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="twitter:description" content="Drivique biedt een vaste, vertrouwde chauffeur voor wie zelf niet meer rijdt maar de eigen auto wil houden. Vaste ritten, vast gezicht, eigen auto."><meta name="twitter:image" content="https://drivique.com/og.jpg">
+<link rel="preload" href="/fonts/archivo-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 :root{--black:#060607;--panel:#0C0C0E;--bone:#EFEBE1;--grey:#8C867A;--gold:#D8A24A;--gold-hi:#F7E3A3;--gold-deep:#A9781F;--line:rgba(216,162,74,.15);--hair:rgba(239,235,225,.08);--display:"Archivo",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif;--mono:"Space Mono",ui-monospace,monospace;--grad:linear-gradient(135deg,#F7E3A3,#D8A24A 46%,#A9781F);--ease:cubic-bezier(.16,1,.3,1);color-scheme:dark}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -79,32 +79,113 @@ footer a{color:var(--grey);text-decoration:none}footer a:hover{color:var(--bone)
 .menu-foot a:not(.btn):hover{color:var(--gold-hi)}
 .menu-foot .btn{margin-left:auto}
 @media(max-width:640px){.menu-inner{grid-template-columns:1fr;gap:30px}.menu-foot .btn{margin-left:0;width:100%;text-align:center}}
+
+/* ================= v4 ================= */
+:root{--gutter:28px}
+@media(max-width:600px){:root{--gutter:20px}}
+.wrap{padding-left:max(var(--gutter),env(safe-area-inset-left))!important;padding-right:max(var(--gutter),env(safe-area-inset-right))!important}
+.nav-in{padding-left:max(var(--gutter),env(safe-area-inset-left));padding-right:max(var(--gutter),env(safe-area-inset-right))}
+h1,h2,h3{text-wrap:balance} p,li{text-wrap:pretty}
+.btn{white-space:nowrap}
+.burger{margin-left:10px}
+.logo img{width:auto}
+.logo{min-height:44px}
+.hero .inner{padding-top:clamp(84px,13vw,150px);padding-bottom:clamp(56px,8vw,96px)}
+h1{font-size:clamp(28px,8vw,74px);overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+.crumb,.kick,.related h4,.foot-meta{font-size:12px}
+.related a span{font-size:11px}
+.crumb a{display:inline-block;padding:8px 0}
+footer a{display:inline-block;padding:5px 0}
+.cta-band{padding:clamp(26px,5vw,44px)}
+.cta-row a{min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:600px){
+ .logo{font-size:17px;gap:8px}
+ .nav-in .btn{padding:11px 16px;font-size:13px}
+ main{padding:48px 0}
+ main p{font-size:16.5px}
+ .cta-row{flex-direction:column;align-items:stretch}
+ .cta-row a{justify-content:center}
+}
+@media(max-width:359px){.nav-in .btn{display:none}}
+@media(min-width:1700px){
+ .wrap{max-width:1040px}
+ .logo{font-size:23px}
+ h1{font-size:88px}.lead{font-size:21px}
+ main h2{font-size:40px} main p,main li{font-size:19px}
+ .crumb,.kick,.related h4,.foot-meta{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:100;display:none;gap:10px;
+ padding:10px max(var(--gutter),env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)) max(var(--gutter),env(safe-area-inset-right));
+ background:rgba(6,6,7,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--hair);
+ transform:translateY(110%);transition:transform .45s var(--ease)}
+.mbar.show{transform:none}
+.mbar a{flex:1;display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:100px;font-family:var(--body);font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap}
+.mbar .mbar-call{border:1px solid var(--line);color:var(--bone)}
+.mbar .btn{padding:0}
+@media(max-width:900px){.mbar{display:flex}body{padding-bottom:calc(68px + env(safe-area-inset-bottom))}}
+@media print{.mbar{display:none}}
+
+nav{z-index:120}
+.menu{z-index:115;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;justify-content:flex-start;
+ padding:max(104px,calc(env(safe-area-inset-top) + 92px)) max(var(--gutter),env(safe-area-inset-right)) calc(40px + env(safe-area-inset-bottom)) max(var(--gutter),env(safe-area-inset-left))}
+@media(min-height:860px) and (min-width:641px){.menu{justify-content:center}}
+@media(max-width:640px){.menu-col a{font-size:22px;padding:10px 0}.menu-inner{gap:26px}}
+.burger{flex-shrink:0;width:44px;height:44px}
+a:focus-visible,button:focus-visible,[role=button]:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.snav{display:none}
+@media(min-width:1100px){.snav{display:flex;align-items:center;gap:26px;margin-right:26px}
+ .snav a{color:var(--bone);text-decoration:none;font-size:14px;font-weight:500;opacity:.82;padding:12px 0;transition:opacity .3s,color .3s}
+ .snav a:hover{opacity:1;color:var(--gold-hi)}}
+.foot-nav a{display:inline-flex;align-items:center;min-height:32px}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Service","name":"Zorg - Drivique","serviceType":"Zorg & vaste ritten",
-"provider":{"@type":"AutomotiveBusiness","name":"Drivique","telephone":"+31646064016","email":"info@drivique.com","url":"https://drivique.vercel.app/",
+"provider":{"@type":"AutomotiveBusiness","name":"Drivique","telephone":"+31646064016","email":"info@drivique.com","url":"https://drivique.com/",
 "address":{"@type":"PostalAddress","streetAddress":"Overaseweg 230","postalCode":"4836 BD","addressLocality":"Breda","addressCountry":"NL"}},
-"areaServed":{"@type":"Place","name":"Europa"},"url":"https://drivique.vercel.app/diensten/zorg"}
+"areaServed":{"@type":"Place","name":"Europa"},"url":"https://drivique.com/diensten/zorg"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-{"@type":"ListItem","position":1,"name":"Home","item":"https://drivique.vercel.app/"},
-{"@type":"ListItem","position":2,"name":"Diensten","item":"https://drivique.vercel.app/#diensten"},
-{"@type":"ListItem","position":3,"name":"Zorg","item":"https://drivique.vercel.app/diensten/zorg"}]}
+{"@type":"ListItem","position":1,"name":"Home","item":"https://drivique.com/"},
+{"@type":"ListItem","position":2,"name":"Diensten","item":"https://drivique.com/#diensten"},
+{"@type":"ListItem","position":3,"name":"Zorg","item":"https://drivique.com/diensten/zorg"}]}
 </script>
 </head><body>
-<nav><div class="nav-in"><a class="logo" href="../"><img src="../images/logo.png" alt="Drivique logo">Drivique<span class="d">.</span></a><span style="display:flex;align-items:center"><a class="btn" href="../#plan">Plan je rit</a><button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button></span></div></nav>
+<nav><div class="nav-in"><a class="logo" href="../"><img src="../images/logo.png" alt="" width="398" height="396">Drivique<span class="d">.</span></a><span style="display:flex;align-items:center"><span class="snav"><a href="../werkwijze">Werkwijze</a><a href="../diensten">Diensten</a><a href="../detailing">Detailing</a><a href="../vloot">Vloot</a><a href="../over-ons">Over ons</a><a href="../contact">Contact</a></span><a class="btn" href="../contact#boeken-zorg">Plan je rit</a><button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button></span></div></nav>
 <div class="menu" id="menu" aria-hidden="true">
   <div class="menu-inner">
-    <div class="menu-col"><span class="menu-h">Navigatie</span>
-      <a href="../">Home</a><a href="../#werkt">Zo werkt het</a><a href="../#manieren">Twee manieren</a><a href="../#vloot">Onze vloot</a><a href="../#over">Over Drivique</a></div>
-    <div class="menu-col"><span class="menu-h">Diensten</span>
-      <a href="nacht">Nacht</a><a href="airport">Airport</a><a href="concours">Concours</a><a href="zorg">Zorg</a><a href="relocate">Relocate</a><a href="business">Business</a><a href="detailing">Detailing</a></div>
+    <div class="menu-col">
+      <span class="menu-h">Pagina's</span>
+      <a href=".././">Home</a>
+      <a href="../werkwijze">Zo werkt het</a>
+      <a href="../diensten">Diensten</a>
+      <a href="../detailing">Wassen &amp; detailing</a>
+      <a href="../vloot">Onze vloot</a>
+      <a href="../over-ons">Over Drivique</a>
+      <a href="../contact">Contact</a>
+    </div>
+    <div class="menu-col">
+      <span class="menu-h">Diensten</span>
+      <a href="../diensten/nacht">Nacht</a>
+      <a href="../diensten/airport">Airport</a>
+      <a href="../diensten/concours">Concours</a>
+      <a href="../diensten/zorg" aria-current="page">Zorg</a>
+      <a href="../diensten/relocate">Relocate</a>
+      <a href="../diensten/business">Business</a>
+      <a href="../detailing">Detailing</a>
+    </div>
   </div>
-  <div class="menu-foot"><a href="tel:+31646064016">+31 6 46064016</a><a href="mailto:info@drivique.com">info@drivique.com</a><a class="btn" href="../#plan">Plan je rit</a></div>
+  <div class="menu-foot">
+    <a href="tel:+31646064016">+31 6 46064016</a>
+    <a href="mailto:info@drivique.com">info@drivique.com</a>
+    <a class="btn" href="../contact#boeken-zorg">Plan je rit</a>
+  </div>
 </div>
-<header class="hero"><div class="ph" style="background-image:url('../images/photo15.jpg')"></div><div class="wrap inner">
-<div class="crumb"><a href="../">Home</a> / <a href="../#diensten">Diensten</a> / Zorg</div>
+<header class="hero"><div class="ph" style="background-image:url('../images/range-rover-evoque-trailer.webp')"></div><div class="wrap inner">
+<div class="crumb"><a href="../">Home</a> / <a href="../diensten">Diensten</a> / Zorg</div>
 <span class="kick">Abonnement</span>
 <h1>Zorg &amp; vaste ritten</h1>
 <p class="lead">Een vaste, vertrouwde chauffeur voor wie zelf niet meer rijdt, maar de eigen auto wil houden.</p>
@@ -113,12 +194,14 @@ footer a{color:var(--grey);text-decoration:none}footer a:hover{color:var(--bone)
 <h2>Mobiel blijven in je eigen auto</h2><p>Niet meer zelf kunnen of willen rijden betekent niet dat je je auto hoeft weg te doen. Met de zorgdienst van Drivique houd je je eigen vertrouwde auto en krijg je een vaste chauffeur die je op vaste momenten rijdt: naar afspraken, familie, de club of de boodschappen.</p><h2>Vast gezicht, vaste afspraken</h2><p>Geen wisselende vreemden, maar één vaste chauffeur die jou en je wensen kent. Ritten plan je vooruit en je stemt rechtstreeks af. Zo blijf je zelfstandig en mobiel, met de rust van een bekend gezicht achter het stuur.</p>
 <ul><li>Je eigen vertrouwde auto</li><li>Eén vaste, gescreende chauffeur</li><li>Vaste ritten op vaste momenten</li><li>Persoonlijk en betrouwbaar</li></ul>
 <div class="cta-band"><h3>Plan je zorg</h3><p>Vertel ons waarheen en wanneer. Wij reageren meestal binnen 24 uur.</p>
-<div class="cta-row"><a class="btn" href="../#plan">Plan je rit</a><a class="ghost" href="tel:+31646064016">Bel +31 6 46064016</a><a class="ghost" href="mailto:info@drivique.com">info@drivique.com</a></div></div>
+<div class="cta-row"><a class="btn" href="../contact#boeken-zorg">Plan je rit</a><a class="ghost" href="tel:+31646064016">Bel +31 6 46064016</a><a class="ghost" href="mailto:info@drivique.com">info@drivique.com</a></div></div>
 <div class="related"><h4>Andere diensten</h4><div class="related-grid"><a href="nacht">Nacht<span>Flagship</span></a><a href="airport">Airport<span>Onderscheidend</span></a><a href="concours">Concours<span>Liefhebbers · 0 km</span></a></div></div>
 </div></main>
 <footer><div class="wrap"><div class="cols">
 <div>Drivique &mdash; Jouw auto. Onze chauffeur.<br>Chauffeursdienst &amp; autotransport door heel Europa.</div>
+<div class="foot-nav"><a href="../werkwijze">Werkwijze</a><br><a href="../diensten">Diensten</a><br><a href="../detailing">Detailing</a><br><a href="../vloot">Vloot</a><br><a href="../over-ons">Over ons</a><br><a href="../contact">Contact</a></div>
 <div><a href="tel:+31646064016">+31 6 46064016</a><br><a href="mailto:info@drivique.com">info@drivique.com</a><br>Overaseweg 230, 4836 BD Breda</div>
 </div><div class="foot-meta"><span>&copy; 2026 Drivique</span><span>KvK 4621176734</span><span>BTW NL251784794B01</span></div></div></footer>
+<div class="mbar" id="mbar" aria-label="Snel contact"><a class="mbar-call" href="tel:+31646064016">Bel direct</a><a class="btn" href="../contact#boeken-zorg">Plan je rit</a></div>
 <script>(function(){var b=document.getElementById('burger'),m=document.getElementById('menu');if(!b||!m)return;function c(){b.classList.remove('open');m.classList.remove('open');b.setAttribute('aria-expanded','false');m.setAttribute('aria-hidden','true');document.body.style.overflow='';}function t(){var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);m.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':'';}b.addEventListener('click',t);m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',c);});document.addEventListener('keydown',function(e){if(e.key==='Escape')c();});})();</script>
-</body></html>
+<script>(function(){var mb=document.getElementById('mbar');if(!mb)return;var raf=0;function u(){raf=0;mb.classList.toggle('show',(window.pageYOffset||0)>window.innerHeight*0.4);}window.addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(u);},{passive:true});u();})();</script></body></html>
